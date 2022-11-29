@@ -19,3 +19,15 @@ class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = PostModel
         fields = '__all__'
+
+
+    def create(self, validated_data):
+        author = validated_data.pop('author')
+        published_by = validated_data.pop('published_by')
+        post = PostModel.objects.create(**validated_data)
+        return post
+
+
+
+
+
